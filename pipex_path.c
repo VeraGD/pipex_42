@@ -84,7 +84,7 @@ static char	*get_cmd_path(char *cmd1, char **envp)
 	cmd_path_slash = get_env_path(envp);
 	split3 = ft_split(cmd_path_slash, ' ');
 	cmd_space_slash = split3[0];
-	len = ft_strlen(cmd_path_slash) + ft_strlen(cmd_space_slash) + 2;
+	len = ft_strlen(cmd_path_slash) + ft_strlen(cmd1) + 2;
 	path = get_path(cmd_path_slash, len, cmd1);
 	free_split(split3);
 	free(cmd_path_slash);

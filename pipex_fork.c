@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 09:33:58 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/25 09:48:21 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/10/25 12:19:06 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,13 @@ static t_pipex	*initialization(char *cmd1, char *cmd2, char **envp)
 	t_pipex	*struct_pipex;
 
 	struct_pipex = (t_pipex *)malloc(sizeof(t_pipex));
+	if (struct_pipex)
+	{
+		struct_pipex->cmd1_path = NULL;
+		struct_pipex->cmd1_options = NULL;
+		struct_pipex->cmd2_path = NULL;
+		struct_pipex->cmd2_options = NULL;
+	}
 	if (!struct_pipex)
 	{
 		ft_printf("Error allocating memory to structure\n");
