@@ -73,7 +73,7 @@ static char	*get_env_path(char **envp)
 	return (cmd_path_slash);
 }
 
-static char	*get_cmd_path(char *cmd1, char **envp)
+char	*get_cmd_path(char *cmd1, char **envp)
 {
 	char	**split3;
 	char	*cmd_space_slash;
@@ -115,4 +115,7 @@ void	ini_s(t_pipex *struct_pipex, char *cmd1, char *cmd2, char **envp)
 		struct_pipex->cmd2_path = cmd2_path;
 		struct_pipex->cmd2_options = ft_split(cmd2, ' ');
 	}
+	struct_pipex->here_doc = 0;
+	struct_pipex->lim = NULL;
+	struct_pipex->fd_ini = -1;
 }

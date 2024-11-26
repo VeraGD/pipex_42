@@ -23,6 +23,9 @@ static t_pipex	*initialization(char *cmd1, char *cmd2, char **envp)
 		struct_pipex->cmd1_options = NULL;
 		struct_pipex->cmd2_path = NULL;
 		struct_pipex->cmd2_options = NULL;
+		struct_pipex->cmds = NULL;
+		struct_pipex->paths = NULL;
+		struct_pipex->pids = NULL;
 	}
 	if (!struct_pipex)
 	{

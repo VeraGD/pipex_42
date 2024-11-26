@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:03:45 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/25 10:03:48 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:00:33 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*res;
-	size_t	i;
-	size_t	j;
+	int		i;
+	int		j;
 
 	if (s1 == NULL || s2 == NULL)
 		return (NULL);
@@ -65,4 +65,31 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	res[i] = '\0';
 	return (res);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	len;
+	int	i;
+
+	if (s != NULL)
+	{
+		len = ft_strlen(s);
+		i = 0;
+		while (i < len)
+		{
+			write(fd, &s[i], 1);
+			i++;
+		}
+	}
+}
+
+int	ft_len_double(char **argv)
+{
+	int	i;
+
+	i = 0;
+	while (argv[i] != NULL)
+		i++;
+	return (i);
 }
