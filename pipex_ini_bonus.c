@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/26 16:01:03 by veragarc          #+#    #+#             */
-/*   Updated: 2024/11/26 16:02:38 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:16:35 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,12 @@ static void	ini_here(t_pipex *struct_pipex, char **argv, char **envp)
 	{
 		struct_pipex->paths[i] = get_cmd_path(argv[3 + i], envp);
 		struct_pipex->cmds[i] = argv[3 + i];
+		if (struct_pipex->paths[i] == NULL)
+		{
+			free_pipex_paths(struct_pipex, i);
+			free(pid);
+			return ;
+		}
 		i++;
 	}
 	struct_pipex->paths[i] = NULL;
@@ -41,28 +47,37 @@ static void	ini_here(t_pipex *struct_pipex, char **argv, char **envp)
 	struct_pipex->fd_ini = 0;
 }
 
-static void	ini_bonus(t_pipex *struct_pipex, int argc, char **argv, char **envp)
+static void	init_non_doc(t_pipex *s, int argc, char **argv, char **envp)
 {
 	int	*pid;
 	int	i;
 
+	s->paths = (char **)malloc((argc - 2) * sizeof(char *));
+	s->cmds = (char **)malloc((argc - 3) * sizeof(char *));
+	pid = (int *)malloc((argc - 3) * sizeof(int));
 	i = 0;
+	while (i < argc - 3)
+	{
+		s->paths[i] = get_cmd_path(argv[2 + i], envp);
+		s->cmds[i] = argv[2 + i];
+		if (s->paths[i] == NULL)
+		{
+			free_pipex_paths(s, i);
+			free(pid);
+			return ;
+		}
+		i++;
+	}
+	s->paths[i] = NULL;
+	s->pids = pid;
+	s->fd_ini = -1;
+}
+
+static void	ini_bonus(t_pipex *struct_pipex, int argc, char **argv, char **envp)
+{
 	check_here(struct_pipex, argv);
 	if (struct_pipex->here_doc == 0)
-	{
-		struct_pipex->paths = (char **)malloc((argc - 2) * sizeof(char *));
-		struct_pipex->cmds = (char **)malloc((argc - 3) * sizeof(char *));
-		pid = (int *)malloc((argc - 3) * sizeof(int));
-		while (i < argc - 3)
-		{
-			struct_pipex->paths[i] = get_cmd_path(argv[2 + i], envp);
-			struct_pipex->cmds[i] = argv[2 + i];
-			i++;
-		}
-		struct_pipex->paths[i] = NULL;
-		struct_pipex->pids = pid;
-		struct_pipex->fd_ini = -1;
-	}
+		init_non_doc(struct_pipex, argc, argv, envp);
 	else
 		ini_here(struct_pipex, argv, envp);
 }

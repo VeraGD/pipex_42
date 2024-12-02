@@ -6,38 +6,11 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 09:53:58 by veragarc          #+#    #+#             */
-/*   Updated: 2024/10/25 10:02:47 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:59:10 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
-
-static char	*get_path(char *path, int len, char *cmd1)
-{
-	int		i;
-	int		j;
-	char	*path_cmd;
-	char	*cmd_f;
-	char	**split;
-
-	i = 1;
-	path_cmd = (char *)malloc((len + 1) * sizeof(char));
-	path_cmd[0] = '/';
-	while (path[i - 1] != '\0')
-	{
-		path_cmd[i] = path[i - 1];
-		i++;
-	}
-	path_cmd[i++] = '/';
-	j = 0;
-	split = ft_split(cmd1, ' ');
-	cmd_f = split[0];
-	while (cmd_f[j] != '\0')
-		path_cmd[i++] = cmd_f[j++];
-	path_cmd[i] = '\0';
-	free_split(split);
-	return (path_cmd);
-}
 
 static char	*env_path(char **envp)
 {
@@ -50,52 +23,41 @@ static char	*env_path(char **envp)
 	return (NULL);
 }
 
-static char	*get_env_path(char **envp)
+char	*aux_path(char **split1, char **split2, char *join, char *join_cmd)
 {
-	char	*cmd_points_split;
-	char	**split1;
-	char	**split2;
-	char	*cmd_path_slash;
-	int		i;
-
-	i = 0;
-	split1 = ft_split(env_path(envp), ':');
-	cmd_points_split = split1[0];
-	split2 = ft_split(cmd_points_split, '/');
-	cmd_path_slash = split2[2];
 	free_split(split1);
-	while (i < 2)
-	{
-		free(split2[i]);
-		i++;
-	}
-	free(split2);
-	return (cmd_path_slash);
+	free_split(split2);
+	free(join);
+	return (join_cmd);
 }
 
 char	*get_cmd_path(char *cmd1, char **envp)
 {
-	char	**split3;
-	char	*cmd_space_slash;
-	char	*path;
-	int		len;
-	char	*cmd_path_slash;
+	char	**split1;
+	char	**split2;
+	char	*join;
+	char	*join_cmd;
+	int		i;
 
-	cmd_path_slash = get_env_path(envp);
-	split3 = ft_split(cmd_path_slash, ' ');
-	cmd_space_slash = split3[0];
-	len = ft_strlen(cmd_path_slash) + ft_strlen(cmd1) + 2;
-	path = get_path(cmd_path_slash, len, cmd1);
-	free_split(split3);
-	free(cmd_path_slash);
-	if (access(path, F_OK) == 0)
-		return (path);
-	else
+	split1 = ft_split(env_path(envp), ':');
+	split2 = ft_split(cmd1, ' ');
+	i = 0;
+	while (i < ft_len_double(split1))
 	{
-		ft_printf("Invalid command entered, %s\n", cmd1);
-		free(path);
-		return (NULL);
+		join = ft_strjoin(split1[i], "/");
+		join_cmd = ft_strjoin(join, split2[0]);
+		if (access(join_cmd, F_OK) == 0)
+		{
+			return (aux_path(split1, split2, join, join_cmd));
+		}
+		free(join_cmd);
+		free(join);
+		i++;
 	}
+	ft_printf("Invalid command entered, %s\n", cmd1);
+	free_split(split1);
+	free_split(split2);
+	return (NULL);
 }
 
 void	ini_s(t_pipex *struct_pipex, char *cmd1, char *cmd2, char **envp)

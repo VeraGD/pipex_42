@@ -12,7 +12,7 @@
 
 #include "pipex.h"
 
-void	first_fork(t_pipex *s, int infile)
+void	first_fork_b(t_pipex *s, int infile)
 {
 	if (infile == -1)
 	{
@@ -28,6 +28,7 @@ void	first_fork(t_pipex *s, int infile)
 	s->cmd1_options = ft_split(s->cmds[0], ' ');
 	execve(s->paths[0], s->cmd1_options, NULL);
 	ft_printf("Error running execve");
+	free_struct(s);
 	exit(1);
 }
 

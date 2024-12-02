@@ -48,7 +48,7 @@ int	choose_fork(t_pipex *s, int argc, int infile, int outfile)
 		if (s->pids[i] == 0)
 		{
 			if (i == 0)
-				first_fork(s, infile);
+				first_fork_b(s, infile);
 			else if (i == argc - 4)
 				last_fork(s, outfile, fd_prev, i);
 			else

@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 09:50:40 by veragarc          #+#    #+#             */
-/*   Updated: 2024/11/26 16:03:36 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:14:44 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,26 @@ void	free_split(char **split)
 		i++;
 	}
 	free(split);
+}
+
+void	free_pipex_paths(t_pipex *struct_pipex, int total)
+{
+	int	i;
+
+	i = 0;
+	if (struct_pipex->paths[i] == NULL)
+	{
+		while (i < total)
+		{
+			if (struct_pipex->paths[i])
+				free(struct_pipex->paths[i]);
+			i++;
+		}
+		free(struct_pipex->paths);
+		struct_pipex->paths = NULL;
+		free(struct_pipex->cmds);
+		struct_pipex->cmds = NULL;
+	}
 }
 
 void	free_struct(t_pipex *struct_pipex)

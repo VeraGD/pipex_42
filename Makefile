@@ -22,11 +22,11 @@ RESET = \033[0m
 all:		$(NAME)
 
 $(NAME):	$(OBJT) $(INCLUDE)
-		cc -Wall -Werror -Wextra -g $(OBJT) -o $(NAME)
+		cc -Wall -Werror -Wextra $(OBJT) -o $(NAME)
 		@echo "${GREEN}Pipex compilation OK${RESET}"
 
 bonus:		$(OBJT_B) $(INCLUDE)
-		cc -Wall -Werror -Wextra -g $(OBJT_B) -o $(NAME)
+		cc -Wall -Werror -Wextra $(OBJT_B) -o $(NAME)
 		@echo "${GREEN}Pipex bonus compilation OK${RESET}"
 
 clean:

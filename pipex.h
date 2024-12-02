@@ -6,7 +6,7 @@
 /*   By: veragarc <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/25 10:04:17 by veragarc          #+#    #+#             */
-/*   Updated: 2024/11/26 16:19:40 by veragarc         ###   ########.fr       */
+/*   Updated: 2024/11/28 10:15:13 by veragarc         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,11 @@ char	*ft_strjoin(char const *s1, char const *s2);
 
 char	*get_cmd_path(char *cmd1, char **envp);
 
+void	free_pipex_paths(t_pipex *struct_pipex, int total);
+
 t_pipex	*initialization_bonus(int argc, char **argv, char **envp);
 
-void	first_fork(t_pipex *s, int infile);
+void	first_fork_b(t_pipex *s, int infile);
 
 void	middle_fork(t_pipex *s, int fd_prev, int i);
 
