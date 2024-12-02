@@ -1,4 +1,4 @@
-# pipex_42
+# Pipex_42
 
 
 ## 1. Project description
