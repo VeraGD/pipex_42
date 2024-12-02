@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../pipex.h"
 
 static void	check_here(t_pipex *struct_pipex, char **argv)
 {

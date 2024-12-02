@@ -1,13 +1,15 @@
 
 NAME = pipex
 
-SRC = ft_aux_hexa.c ft_aux_printf.c ft_printf.c ft_split.c \
-pipex_free.c pipex_utils.c pipex_path.c pipex_fork.c main_pipex.c
+SRC = src/printf/ft_aux_hexa.c src/printf/ft_aux_printf.c src/printf/ft_printf.c \
+src/utils/ft_split.c src/utils/pipex_free.c src/utils/pipex_utils.c \
+src/pipex/pipex_path.c src/pipex/pipex_fork.c src/main/main_pipex.c
 
-SRC_B = ft_aux_hexa.c ft_aux_printf.c ft_printf.c ft_split.c \
-pipex_free.c pipex_utils.c pipex_utils_bonus.c pipex_path.c \
-pipex_ini_bonus.c pipex_choose_bonus.c pipex_fork_bonus.c \
-main_pipex_bonus.c
+SRC_B = src/printf/ft_aux_hexa.c src/printf/ft_aux_printf.c src/printf/ft_printf.c \
+src/utils/ft_split.c src/utils/pipex_free.c src/utils/pipex_utils.c \
+src/utils/pipex_utils_bonus.c src/pipex/pipex_path.c src/pipex/pipex_ini_bonus.c \
+src/pipex/pipex_choose_bonus.c src/pipex/pipex_fork_bonus.c \
+src/main/main_pipex_bonus.c
 
 INCLUDE = pipex.h
 

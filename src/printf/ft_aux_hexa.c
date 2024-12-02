@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../pipex.h"
 
 int	ft_putnbr_hexa(unsigned int nb, int cont, char d)
 {

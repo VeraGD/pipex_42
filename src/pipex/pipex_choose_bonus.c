@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../pipex.h"
 
 static int	choose_aux_wait(t_pipex *s, int argc)
 {

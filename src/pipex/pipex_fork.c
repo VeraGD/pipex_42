@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../pipex.h"
 
 static t_pipex	*initialization(char *cmd1, char *cmd2, char **envp)
 {

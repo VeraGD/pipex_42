@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "pipex.h"
+#include "../../pipex.h"
 
 static int	conversion(char d, va_list args, int cont)
 {
