@@ -10,7 +10,7 @@ The execution of the pipex program should do the same as the following command:
 ```ruby
 $> < file1 comand1 | comand2 > file2
 
-# Ejemplo
+# Example
 
 $> < infile.txt grep hola | wc -l > outfile.txt
 ```
@@ -20,7 +20,7 @@ The programme shall be executed as follows:
 ```ruby
 $> ./pipex file1 comand1 comand2 file2
 
-# Ejemplo
+# Example
 
 $> ./pipex infile.txt "grep hola" "wc -l" outfile.txt
 ```
@@ -61,7 +61,7 @@ It manages more than two pipes. Following the structure:
 ```ruby
 $> ./pipex archivo1 comand1 comand2 comand3 ... archivo2
 
-# Ejemplo
+# Example
 
 $> ./pipex infile.txt "grep hola" "grep hello" "wc -l" outfile.txt
 ```
@@ -75,7 +75,7 @@ When the first parameter is ‘here_doc’, the program is expected to handle th
 ```ruby
 $> ./pipex here\_doc LIMITER comand1 comand2 outfile
 
-# Ejemplo
+# Example
 
 $> ./pipex here\_doc EOF "grep hello" "wc -l" outfile.txt
 ```
